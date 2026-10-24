@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { formatDate, getPosts, postDate, postUrl, summary } from '../lib/posts';
+
+const posts = (await getPosts()).map((post) => ({ post, summary: summary(post.rendered?.html ?? '') }));
+---
+<Base>
+  <main class="list">
+    <div class="site-description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div>
+    {posts.map(({ post, summary }) => (
+      <section class="list-item">
+        <h1 class="title">
+          <a href={postUrl(post)}>Lorem ipsum dolor sit amet</a>
+        </h1>
+        <time>{formatDate(postDate(post))}</time>
+        <br />
+        <div class="description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </div>
+        <a class="readmore" href={postUrl(post)}>Lorem ipsum ⟶</a>
+      </section>
+    ))}
+    <ul class="pagination">
+      <span class="page-item page-prev">
+      </span>
+      <span class="page-item page-next">
+        <a href="/posts/" class="page-link" aria-label="Lorem"><span aria-hidden="true">Lorem →</span></a>
+      </span>
+    </ul>
+  </main>
+</Base>

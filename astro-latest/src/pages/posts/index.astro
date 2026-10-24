@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import { formatDate, getPosts, postDate, postUrl } from '../../lib/posts';
+
+const posts = await getPosts();
+---
+<Base title="Lorem Ipsum">
+  <h1 class="page-title">Lorem ipsum</h1>
+
+  <ul class="posts">
+    {posts.map((post) => (
+      <li class="post">
+        <a href={postUrl(post)}>Lorem ipsum dolor sit amet</a> <span class="meta">Lorem ipsum</span>
+      </li>
+    ))}
+  </ul>
+</Base>

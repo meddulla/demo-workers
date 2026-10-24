@@ -1,0 +1,36 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { formatDate, getPosts, postDate, postUrl, type Post } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  return (await getPosts()).map((post) => ({
+    params: { slug: postUrl(post).replace(/^\/posts\/|\/$/g, '') },
+    props: { post }
+  }));
+}
+
+interface Props { post: Post; }
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+<Base title="Lorem Ipsum">
+  <main>
+    <article>
+      <div class="post-container">
+        <div class="post-content">
+          <div class="title">
+            <h1 class="title">Lorem ipsum dolor sit amet</h1>
+            <div class="meta">Lorem ipsum dolor sit amet</div>
+          </div>
+          <section class="body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </section>
+          <div class="post-tags">
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+</Base>

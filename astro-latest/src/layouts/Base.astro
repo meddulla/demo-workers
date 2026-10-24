@@ -1,0 +1,48 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title, description = '' } = Astro.props;
+const pageTitle = title ? `${title} - Lorem Ipsum` : 'Lorem Ipsum';
+---
+<!doctype html>
+<html>
+  <head lang="en">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{pageTitle}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="alternate" type="application/rss+xml" href="/rss.xml" title="Lorem Ipsum" />
+    <link href="/fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+    <link id="darkModeStyle" rel="stylesheet" type="text/css" href="/dark.css" media="(prefers-color-scheme: dark)" />
+  </head>
+  <body>
+    <div class="content">
+      <header>
+        <div class="main">
+          <a href="/">Lorem Ipsum</a>
+        </div>
+        <nav>
+          <a href="/">Lorem</a>
+          {' '}
+          <a href="/posts/">Ipsum</a>
+          {' '}
+          <a href="/rss.xml">Dolor</a>
+          {' '}
+          <a href="/about/">Sit amet</a>
+          {' '}
+          <a href="#">Consectetur</a>
+        </nav>
+      </header>
+      <slot />
+      <footer>
+        <div class="footer-info">
+          Lorem ipsum dolor sit amet
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
