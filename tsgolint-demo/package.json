@@ -1,0 +1,14 @@
+{
+  "name": "tsgolint-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "oxlint --type-aware --type-check src"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20261024.1",
+    "oxlint": "1.77.0",
+    "oxlint-tsgolint": "7.0.2001"
+  }
+}
